@@ -15,7 +15,7 @@ if(isset($_REQUEST["sort"])){
 if(isset($_REQUEST["search_term"])){
     $search_term = $_REQUEST["search_term"];
 }
-if(isset($_REQUEST["maakonna_lisamine"])){
+if(isset($_REQUEST["maakonna_lisamine"])&& isAdmin()){
     addCounty($_REQUEST["maakonna_nimi"], $_REQUEST["maakonna_keskus"]);
     header("Location: index.php");
     exit();
@@ -25,7 +25,7 @@ if(isset($_REQUEST["inimese_lisamine"])){
     header("Location: index.php");
     exit();
 }
-if(isset($_REQUEST["delete"])){
+if(isset($_REQUEST["delete"])&& isAdmin()){
     deletePerson($_REQUEST["delete"]);
 }
 if(isset($_REQUEST["save"])){
@@ -42,9 +42,9 @@ $people = countyData($sort, $search_term);
 </head>
 <body>
 <header class="header">
-    <p>Admin on sisse logitud</p>
+    <p><?=$_SESSION["kasutaja"]?> on sisse logitud</p>
     <form action="logout.php" method="post">
-        <input type="submit" value="Logi välja" name="logout">
+        <input type="submit" value="Logi välja" name="logout" class="sub">
     </form>
     <div class="container">
         <h1>Tabelid | Inimesed ja maakond</h1>
@@ -91,14 +91,17 @@ $people = countyData($sort, $search_term);
                     <td><?=$person->perekonnanimi ?></td>
                     <td><?=$person->maakonna_nimi ?></td>
                     <td>
+                        <?php if(isAdmin()){?>
                         <a title="Kustuta inimene" class="deleteBtn" href="index.php?delete=<?=$person->id?>"
                            onclick="return confirm('Oled kindel, et soovid kustutada?');">X</a>
                         <a title="Muuda inimest" class="editBtn" href="index.php?edit=<?=$person->id?>">&#9998;</a>
+                        <?php } ?>
                     </td>
                 </tr>
             <?php endforeach; ?>
             </tbody>
         </table>
+        <?php if(isAdmin()){?>
         <form action="index.php">
             <h2>Maakonna lisamine:</h2>
             <dl>
@@ -106,9 +109,10 @@ $people = countyData($sort, $search_term);
                 <dd><input type="text" name="maakonna_nimi" placeholder="Sisesta nimi..."></dd>
                 <dt>Maakonna keskus:</dt>
                 <dl><input type="text" name="maakonna_keskus" placeholder="Sisesta keskus..."></dl>
-                <input type="submit" name="maakonna_lisamine" value="Lisa maakond">
+                <input type="submit" name="maakonna_lisamine" value="Lisa maakond" class="sub">
             </dl>
         </form>
+        <?php } ?>
         <form action="index.php">
             <h2>Inimese lisamine:</h2>
             <dl>
@@ -120,7 +124,7 @@ $people = countyData($sort, $search_term);
                 <dd><?php
                     echo createSelect("SELECT id, maakonna_nimi FROM maakond", "maakonna_id");
                     ?></dd>
-                <input type="submit" name="inimese_lisamine" value="Lisa inimene">
+                <input type="submit" name="inimese_lisamine" value="Lisa inimene" class="sub">
             </dl>
         </form>
     </div>

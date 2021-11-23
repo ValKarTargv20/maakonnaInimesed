@@ -1,0 +1,30 @@
+body{
+    background-image: url(images/Eesti.jpg);
+    background-position: center;
+    background-origin: content-box;
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height:100vh;
+    font-family: 'Noto Sans', sans-serif;
+}
+.text, .sub{
+    font-family: Courier New, monospace;
+}
+.sub{
+    width: 100%;
+    height: 30px;
+    border-radius: 20px;
+    background-color: white;
+    font-weight: bold;
+}
+.tt{
+    width: 100%;
+    height: 30px;
+    border-radius: 20px;
+}
+table td{
+    padding-left: 20px;
+}
+table{
+    margin-left: -20px;
+}

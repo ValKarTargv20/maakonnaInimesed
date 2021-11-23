@@ -2,6 +2,10 @@
 //функции
 require ('conf.php');
 
+function isAdmin()
+{
+    return $_SESSION["onAdmin"] == 1;
+}
 function countyData($sort_by = "eesnimi", $search_term = "") {
     global $connection;
     $sort_list = array("eesnimi", "perekonnanimi", "maakonna_nimi");

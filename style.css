@@ -10,9 +10,12 @@ html {
     font-size: 16px;
 }
 body {
+    background-image: url(images/pngwing.com.png);
+    background-repeat: no-repeat;
+    max-width: 100%;
+    height:auto;
     font-family: Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
-    background: #cecece;
     line-height: 20px;
     color: #333;
 }
@@ -23,8 +26,6 @@ body {
     padding: 0 20px;
 }
 .header {
-    padding: 40px;
-    background-image: linear-gradient(to right, #fff, #fefefe);
     padding: 40px 0;
 }
 .main {
@@ -35,6 +36,7 @@ table {
     box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2);
     background-color: #fff;
     margin-right: 40px;
+
 }
 table tr td,
 table tr,
@@ -59,7 +61,7 @@ form input {
     margin-bottom: 20px;
     border: 1px solid #333;
     box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2);
-    border-radius: 3px;
+    border-radius: 20px;
 }
 form dl dt {
     margin-bottom: 5px;
@@ -73,7 +75,7 @@ form select {
     border: 1px solid #333;
     box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2);
     margin-bottom: 20px;
-    border-radius: 3px;
+    border-radius: 20px;
 }
 form h2 {
     margin-bottom: 10px;
@@ -94,4 +96,11 @@ form h2 {
 }
 .saveBtn {
     color: green;
+}
+.sub{
+    width: auto;
+    height: 30px;
+    border-radius: 20px;
+    background-color: white;
+    font-weight: bold;
 }
